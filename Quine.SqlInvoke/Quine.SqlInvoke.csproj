@@ -6,8 +6,6 @@
     <Nullable>disable</Nullable>
 
     <OutputPath>$(SolutionDir)$(Configuration)\</OutputPath>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\AssemblySigningKey.snk</AssemblyOriginatorKeyFile>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
