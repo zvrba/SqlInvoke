@@ -1,7 +1,9 @@
 SqlInvoke
 =========
 This is not an ORM, but a "foreign language interface" towards SQLServer using ADO.NET and `Microsoft.Data.SqlClient`.
-The name of the project, which plays on P/Invoke, reflects its underlying philosophy.
+The name of the project, which plays on P/Invoke, reflects its underlying philosophy.  The library targets net6.0.
+(The build will also produce a netstandard2.0 library, however, only `Sql*` attributes are available in the dll
+targeting netstandard2.0 -- no executable code is there.)
 
 I'd like to thank my employer, Quine AS (which I'm a co-founder of), for allowing me to open-source this project.
 
@@ -14,11 +16,13 @@ However, it _does_ come with some directly usable features:
 - Result set readers,
 - SqlRowAccessor<T> class that helps to reduce boilerplate in the most common case of executing a fixed-text statement
 
-To get acquainted with the library, start with `Models.cs` and `TestSqlContext.cs` in the test project.  Then read
-the test cases to see the library in use.  NOTE: `SqlContext` class is the entry point to all functionality.  Even
-though the name is similar, the functionality has nothing in common with EFCore contexts.  (`SqlContext` is a cache
-/ reflection / compilation context for expression trees that transfer data items between C# objects and SQL row and
-parameter sets.)
+To get acquainted with the library, start with [Models.cs](Quine.SqlInvoke.Test/Models.cs) and [TestSqlContext.cs](Quine.SqlInvoke.Test/TestSqlContext.cs)
+in the test project.  Then read the test cases to see the library in use.
+
+NOTE: `SqlContext` class is the entry point to all functionality.  Even though the name is similar, the functionality
+has nothing in common with EFCore contexts: `SqlContext` is a reflection / code cache for compiled expression trees
+that transfer data items between C# objects and SQL row and parameter sets.  It is also a place to put predeclared
+SQL statement instances for easy access, i.e., without going through `GetRowAccessor` method.
 
 Why not EFCore?
 ---------------
